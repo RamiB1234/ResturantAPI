@@ -31,6 +31,8 @@ namespace ResturantAPI
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration["Data:ResturantConnectionString"]));
 
+            services.AddTransient<IReservationRepository, EFReservationRepository>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

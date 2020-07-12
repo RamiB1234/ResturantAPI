@@ -7,7 +7,7 @@ namespace ResturantAPI.Models.Repository
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
-        public DbSet<Reservation> Settings { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
     }
 }
