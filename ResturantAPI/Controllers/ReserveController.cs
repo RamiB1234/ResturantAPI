@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ResturantAPI.Models.Entities;
 using ResturantAPI.Models.Repository;
+using System;
 
 namespace ResturantAPI.Controllers
 {
@@ -20,8 +21,21 @@ namespace ResturantAPI.Controllers
         [EnableCors("CorsPolicy")]
         public ActionResult Post([FromBody] Reservation reservation)
         {
-            reservationRepository.SaveReservation(reservation);
-            return StatusCode(200);
+            try
+            {
+                // Server side validation:
+                if(reservation.date< DateTime.Today)
+                {
+                    return StatusCode(400); // 400: Bad request
+                }
+
+                reservationRepository.SaveReservation(reservation);
+                return StatusCode(201); // 201: Created
+            }
+            catch
+            {
+                return StatusCode(400); // 400: Bad request
+            }
         }
     }
 }
