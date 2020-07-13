@@ -19,6 +19,22 @@ namespace ResturantAPI.Controllers
             this.reservationRepository = reservationRepository;
         }
 
+        // GET: api/reserve/1
+        [HttpGet("{userId}")]
+        [EnableCors("CorsPolicy")]
+        public ActionResult GetReservations(int userId)
+        {
+            try
+            {
+                var reservations = reservationRepository.GetUserReservations(userId);
+                return Ok(reservations);
+            }
+            catch
+            {
+                return StatusCode(400); // 400: Bad request
+            }
+        }
+
         [HttpPost]
         [EnableCors("CorsPolicy")]
         public ActionResult Post([FromBody] Reservation reservation)

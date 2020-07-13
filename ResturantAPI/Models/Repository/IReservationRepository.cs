@@ -9,5 +9,6 @@ namespace ResturantAPI.Models.Repository
     public interface IReservationRepository
     {
         void SaveReservation(Reservation reservation);
+        IEnumerable<Reservation> GetUserReservations(int userId);
     }
 }

@@ -47,6 +47,7 @@ namespace ResturantAPI.Controllers
         }
 
         [HttpPost]
+        [EnableCors("CorsPolicy")]
         public ActionResult Login([FromBody] User user)
         {
             var foundUser= userRepository.ValidateUser(user);
