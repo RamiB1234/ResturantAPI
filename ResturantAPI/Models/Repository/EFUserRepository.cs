@@ -18,9 +18,17 @@ namespace ResturantAPI.Models.Repository
             context.SaveChanges();
         }
 
+        public User CheckDuplicateEmail(User user)
+        {
+            return context.Users.FirstOrDefault(u => u.Email == user.Email);
+
+        }
+
         public User ValidateUser(User user)
         {
             return context.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
         }
+
+        
     }
 }

@@ -32,6 +32,11 @@ namespace ResturantAPI.Controllers
             // TO-DO: check if user already exists here
             try
             {
+                var foundUser = userRepository.CheckDuplicateEmail(user);
+                if(foundUser!= null)
+                {
+                    return StatusCode(406); // Not Acceptable
+                }
                 userRepository.AddUser(user);
                 return StatusCode(201); // 201: Created
             }

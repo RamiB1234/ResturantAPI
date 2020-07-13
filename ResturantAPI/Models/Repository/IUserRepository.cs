@@ -6,5 +6,6 @@ namespace ResturantAPI.Models.Repository
     {
         void AddUser(User user);
         User ValidateUser(User user);
+        User CheckDuplicateEmail(User user);
     }
 }
