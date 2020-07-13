@@ -10,7 +10,7 @@ using ResturantAPI.Models.Repository;
 namespace ResturantAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200712214723_Initial")]
+    [Migration("20200713232130_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

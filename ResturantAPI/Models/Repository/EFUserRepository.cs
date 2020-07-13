@@ -14,6 +14,10 @@ namespace ResturantAPI.Models.Repository
 
         public void AddUser(User user)
         {
+            // Hashing password before saving:
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Password = hashedPassword;
+
             context.Users.Add(user);
             context.SaveChanges();
         }
@@ -26,7 +30,19 @@ namespace ResturantAPI.Models.Repository
 
         public User ValidateUser(User user)
         {
-            return context.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+            var foundUser = context.Users.FirstOrDefault(u => u.Email == user.Email);
+
+            if(foundUser!=null)
+            {
+                // check a password
+                bool validPassword = BCrypt.Net.BCrypt.Verify(user.Password, foundUser.Password);
+
+                return validPassword == true ? foundUser : null;
+            }
+
+            // User not found by email:
+            return null;
+
         }
 
         
