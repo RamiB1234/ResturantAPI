@@ -23,7 +23,7 @@ namespace ResturantAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration["Data:ResturantConnectionString"]));
+            options.UseSqlServer(Configuration["ConnectionString"]));
 
             // Mapping dependencies:
             services.AddTransient<IReservationRepository, EFReservationRepository>();
@@ -39,9 +39,9 @@ namespace ResturantAPI
                   ValidateAudience = true,
                   ValidateLifetime = true,
                   ValidateIssuerSigningKey = true,
-                  ValidIssuer = Configuration["Jwt:Issuer"],
-                  ValidAudience = Configuration["Jwt:Audience"],
-                  IssuerSigningKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                  ValidIssuer = Configuration["JwtIssuer"],
+                  ValidAudience = Configuration["JwtAudience"],
+                  IssuerSigningKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(Configuration["JwtKey"]))
               };
           });
 

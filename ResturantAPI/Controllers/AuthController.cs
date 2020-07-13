@@ -59,10 +59,10 @@ namespace ResturantAPI.Controllers
 
         private string GenerateJWT()
         {
-            var issuer = configuration["Jwt:Issuer"];
-            var audience = configuration["Jwt:Audience"];
+            var issuer = configuration["JwtIssuer"];
+            var audience = configuration["JwtAudience"];
             var expiry = DateTime.Now.AddMinutes(120);
-            var securityKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(configuration["JwtKey"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(issuer: issuer, audience: audience, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
