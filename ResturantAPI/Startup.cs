@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using ResturantAPI.Models.Repository;
+using System.Text;
 
 namespace ResturantAPI
 {
@@ -26,6 +29,22 @@ namespace ResturantAPI
             services.AddTransient<IReservationRepository, EFReservationRepository>();
             services.AddTransient<IUserRepository, EFUserRepository>();
 
+            // JWT middleware:
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+          .AddJwtBearer(options =>
+          {
+              options.TokenValidationParameters = new TokenValidationParameters
+              {
+                  ValidateIssuer = true,
+                  ValidateAudience = true,
+                  ValidateLifetime = true,
+                  ValidateIssuerSigningKey = true,
+                  ValidIssuer = Configuration["Jwt:Issuer"],
+                  ValidAudience = Configuration["Jwt:Audience"],
+                  IssuerSigningKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+              };
+          });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -41,6 +60,7 @@ namespace ResturantAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors("CorsPolicy");
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
             {

@@ -12,7 +12,7 @@ namespace ResturantAPI.Models.Repository
             context = ctx;
         }
 
-        void IReservationRepository.SaveReservation(Reservation reservation)
+        public void SaveReservation(Reservation reservation)
         {
             context.Reservations.Add(reservation);
             context.SaveChanges();

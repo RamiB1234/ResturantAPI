@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ResturantAPI.Models.Entities;
 using ResturantAPI.Models.Repository;
@@ -8,6 +9,7 @@ namespace ResturantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReserveController : ControllerBase
     {
         private IReservationRepository reservationRepository;

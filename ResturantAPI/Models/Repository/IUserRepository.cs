@@ -5,5 +5,6 @@ namespace ResturantAPI.Models.Repository
     public interface IUserRepository
     {
         void AddUser(User user);
+        User ValidateUser(User user);
     }
 }
