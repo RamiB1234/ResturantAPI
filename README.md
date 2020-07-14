@@ -18,6 +18,7 @@ Please note that the backend API is hosted in Azure as a service
 - A secured endpoint to fetch user reservations (GET)
 - JWT Authentication
 - Server side validation (i.e, prevent email duplications, reservation date in the future
+- Password hashing using [BCrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core)
 
 ## Installation
 
