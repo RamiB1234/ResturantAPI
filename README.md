@@ -1,11 +1,11 @@
 # Resurant Reservation System (API)
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
-This is the API part of the system. To chech the front-end part, please check this [repository](https://github.com/RamiB1234/resturant-front)
+This is the API part of the system. To check the front-end part, please check this [repository](https://github.com/RamiB1234/resturant-front)
 
 ## Live Demo
 
-To test the app, please click on this [link](https://ramib1234.github.io/my-reads/)
+To test the app, please click on this [link](https://ramib1234.github.io/resturant-front/)
 Please note that the backend API is hosted in Azure as a service
 
 ## Features
